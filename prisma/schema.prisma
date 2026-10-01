@@ -1,0 +1,73 @@
+// Prisma Schema for Lecture Planner
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String     @id @default(cuid())
+  email     String     @unique
+  name      String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  courses   Course[]
+  schedules Schedule[]
+}
+
+model Course {
+  id          String     @id @default(cuid())
+  userId      String?
+  user        User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subjectName String
+  subjectCode String?
+  department  String?
+  credits     Int        @default(3)
+  totalHours  Int        @default(40)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  schedules   Schedule[]
+}
+
+model Schedule {
+  id             String        @id @default(cuid())
+  userId         String?
+  user           User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId       String?
+  course         Course?       @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  subjectName    String
+  subjectCode    String?
+  credits        Int           @default(3)
+  totalHours     Int           @default(40)
+  startDate      String
+  endDate        String?
+  teachingDays   String        // JSON array of active days [1,2,3,4,5]
+  includeFridays Boolean       @default(true)
+  customHolidays String?       // JSON array of custom holiday objects
+  syllabusRaw    String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  lectures       LectureItem[]
+}
+
+model LectureItem {
+  id          String   @id @default(cuid())
+  scheduleId  String
+  schedule    Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  srNo        Int
+  unit        String?
+  topic       String
+  subTopics   String?  // JSON array
+  lectures    Int      @default(1)
+  targetDates String?  // JSON array of formatted strings
+  dateRange   String?
+  isOverflow  Boolean  @default(false)
+  completed   Boolean  @default(false)
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

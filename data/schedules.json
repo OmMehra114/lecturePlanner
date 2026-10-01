@@ -1,0 +1,877 @@
+[
+  {
+    "success": true,
+    "meta": {
+      "subjectName": "Information Security",
+      "subjectCode": "CO001",
+      "department": "",
+      "credits": 3,
+      "totalHours": 40,
+      "startDate": "2026-08-03",
+      "endDate": "2026-11-27",
+      "teachingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "includeFridays": true,
+      "customHolidays": [],
+      "includeDefaultHolidays": true
+    },
+    "topics": [
+      {
+        "srNo": 1,
+        "topic": "Needs for Security",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "03 Aug 2026 (Mon)"
+        ],
+        "dateRange": "03 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 2,
+        "topic": "Basic security terminologies (threats, vulnerability, exploit etc.) & Security principles (CIA), authentication, nonrepudiation",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "04 Aug 2026 (Tue)"
+        ],
+        "dateRange": "04 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 3,
+        "topic": "Security attacks and their classifications",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "05 Aug 2026 (Wed)"
+        ],
+        "dateRange": "05 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 4,
+        "topic": "Prime Number & Modular Arithmetic",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "06 Aug 2026 (Thu)"
+        ],
+        "dateRange": "06 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 5,
+        "topic": "Fermat’s and Euler’s Theorem & Euclidean Algorithms",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "07 Aug 2026 (Fri)"
+        ],
+        "dateRange": "07 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 6,
+        "topic": "Chinese Remainder Theorem",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "10 Aug 2026 (Mon)"
+        ],
+        "dateRange": "10 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 7,
+        "topic": "Discrete logarithms",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "11 Aug 2026 (Tue)"
+        ],
+        "dateRange": "11 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 8,
+        "topic": "Classical cryptography – substitution & transposition",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "12 Aug 2026 (Wed)"
+        ],
+        "dateRange": "12 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 9,
+        "topic": "Cryptanalysis of substitution and transposition",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "13 Aug 2026 (Thu)"
+        ],
+        "dateRange": "13 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 10,
+        "topic": "Symmetric Cryptography Algorithm – DES & 3DES",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "14 Aug 2026 (Fri)"
+        ],
+        "dateRange": "14 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 11,
+        "topic": "Symmetric Cryptography Algorithm – AES",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "17 Aug 2026 (Mon)"
+        ],
+        "dateRange": "17 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 12,
+        "topic": "Modes of operation: ECB",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "18 Aug 2026 (Tue)"
+        ],
+        "dateRange": "18 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 13,
+        "topic": "Modes of operation: CBC",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "19 Aug 2026 (Wed)"
+        ],
+        "dateRange": "19 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 14,
+        "topic": "Other modes of operation (brief)",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "20 Aug 2026 (Thu)"
+        ],
+        "dateRange": "20 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 15,
+        "topic": "Linear Cryptanalysis",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "21 Aug 2026 (Fri)"
+        ],
+        "dateRange": "21 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 16,
+        "topic": "Differential Cryptanalysis",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "24 Aug 2026 (Mon)"
+        ],
+        "dateRange": "24 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 17,
+        "topic": "Key Distribution and Management overview",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "25 Aug 2026 (Tue)"
+        ],
+        "dateRange": "25 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 18,
+        "topic": "Diffie-Hellman Key Exchange algorithm",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "26 Aug 2026 (Wed)"
+        ],
+        "dateRange": "26 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 19,
+        "topic": "Asymmetric Key Cryptography Algorithm – RSA",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "27 Aug 2026 (Thu)"
+        ],
+        "dateRange": "27 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 20,
+        "topic": "Asymmetric Key Cryptography Algorithm – ECC",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "28 Aug 2026 (Fri)"
+        ],
+        "dateRange": "28 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 21,
+        "topic": "Various types of attacks on Cryptosystems",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "31 Aug 2026 (Mon)"
+        ],
+        "dateRange": "31 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 22,
+        "topic": "MAC (Message Authentication Code)",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "01 Sep 2026 (Tue)"
+        ],
+        "dateRange": "01 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 23,
+        "topic": "Hash function",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "02 Sep 2026 (Wed)"
+        ],
+        "dateRange": "02 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 24,
+        "topic": "SHA",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "03 Sep 2026 (Thu)"
+        ],
+        "dateRange": "03 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 25,
+        "topic": "MD5",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "07 Sep 2026 (Mon)"
+        ],
+        "dateRange": "07 Sep 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 26,
+        "topic": "HMAC",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "08 Sep 2026 (Tue)"
+        ],
+        "dateRange": "08 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 27,
+        "topic": "Digital signature and authentication protocols",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "09 Sep 2026 (Wed)"
+        ],
+        "dateRange": "09 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 28,
+        "topic": "Authorization",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "10 Sep 2026 (Thu)"
+        ],
+        "dateRange": "10 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 29,
+        "topic": "Access control mechanism",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "11 Sep 2026 (Fri)"
+        ],
+        "dateRange": "11 Sep 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 30,
+        "topic": "X.509 Digital Certificate",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "14 Sep 2026 (Mon)"
+        ],
+        "dateRange": "14 Sep 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 31,
+        "topic": "E-mail security – PGP",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "15 Sep 2026 (Tue)"
+        ],
+        "dateRange": "15 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 32,
+        "topic": "E-mail security – MIME",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "16 Sep 2026 (Wed)"
+        ],
+        "dateRange": "16 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 33,
+        "topic": "E-mail security – S/MIME",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "17 Sep 2026 (Thu)"
+        ],
+        "dateRange": "17 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 34,
+        "topic": "IP security protocols",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "18 Sep 2026 (Fri)"
+        ],
+        "dateRange": "18 Sep 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 35,
+        "topic": "Web security – TLS & SSL",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "21 Sep 2026 (Mon)"
+        ],
+        "dateRange": "21 Sep 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 36,
+        "topic": "Secure Electronic Transaction (SET)",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "22 Sep 2026 (Tue)"
+        ],
+        "dateRange": "22 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 37,
+        "topic": "Firewall and its types",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "23 Sep 2026 (Wed)"
+        ],
+        "dateRange": "23 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 38,
+        "topic": "Introduction to IDPS",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "24 Sep 2026 (Thu)"
+        ],
+        "dateRange": "24 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 39,
+        "topic": "Risk Management",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "25 Sep 2026 (Fri)"
+        ],
+        "dateRange": "25 Sep 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 40,
+        "topic": "Security Planning",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "28 Sep 2026 (Mon)"
+        ],
+        "dateRange": "28 Sep 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      }
+    ],
+    "stats": {
+      "totalLectures": 40,
+      "totalDays": 40,
+      "semesterExceeded": false,
+      "overflowLecturesCount": 0,
+      "completionEstimatedDate": "28 Sep 2026 (Mon)"
+    },
+    "id": "plan_1790840934058_zmchtl",
+    "updatedAt": "2026-10-01T07:48:54.059Z",
+    "createdAt": "2026-10-01T07:48:54.059Z"
+  },
+  {
+    "success": true,
+    "meta": {
+      "subjectName": "Software Engineering",
+      "subjectCode": "CS-301",
+      "department": "",
+      "credits": 3,
+      "totalHours": 40,
+      "startDate": "2026-08-03",
+      "endDate": "2026-11-20",
+      "teachingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "includeFridays": true,
+      "customHolidays": [],
+      "includeDefaultHolidays": true
+    },
+    "topics": [
+      {
+        "srNo": 1,
+        "unit": "Unit 1: Introduction to Software Engineering & Process Models",
+        "topic": "Software Engineering principles, characteristics and evolution",
+        "subTopics": [
+          "Definition of software engineering",
+          "Software characteristics (functionality, reliability, etc.)",
+          "Historical evolution of software development"
+        ],
+        "lectures": 2,
+        "targetDates": [
+          "03 Aug 2026 (Mon)",
+          "04 Aug 2026 (Tue)"
+        ],
+        "dateRange": "03 Aug 2026 (Mon) to 04 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 2,
+        "unit": "Unit 1: Introduction to Software Engineering & Process Models",
+        "topic": "Software Development Life Cycle (SDLC) models",
+        "subTopics": [
+          "Waterfall model",
+          "Incremental model",
+          "Rapid Application Development (RAD)",
+          "Prototyping model",
+          "Spiral model"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "05 Aug 2026 (Wed)",
+          "06 Aug 2026 (Thu)",
+          "07 Aug 2026 (Fri)"
+        ],
+        "dateRange": "05 Aug 2026 (Wed) to 07 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 3,
+        "unit": "Unit 1: Introduction to Software Engineering & Process Models",
+        "topic": "Agile Methodologies",
+        "subTopics": [
+          "Scrum framework",
+          "Kanban board",
+          "Extreme Programming (XP) practices",
+          "Sprint planning process"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "10 Aug 2026 (Mon)",
+          "11 Aug 2026 (Tue)",
+          "12 Aug 2026 (Wed)"
+        ],
+        "dateRange": "10 Aug 2026 (Mon) to 12 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 4,
+        "unit": "Unit 2: Software Requirements Analysis and Specification",
+        "topic": "Functional vs Non-Functional Requirements",
+        "subTopics": [
+          "Functional requirements definition",
+          "Non-functional requirements categories (performance, security, etc.)",
+          "User vs system requirements"
+        ],
+        "lectures": 2,
+        "targetDates": [
+          "13 Aug 2026 (Thu)",
+          "14 Aug 2026 (Fri)"
+        ],
+        "dateRange": "13 Aug 2026 (Thu) to 14 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 5,
+        "unit": "Unit 2: Software Requirements Analysis and Specification",
+        "topic": "Requirement engineering processes",
+        "subTopics": [
+          "Elicitation techniques",
+          "Requirement analysis and modeling",
+          "Specification writing",
+          "Validation and verification"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "17 Aug 2026 (Mon)",
+          "18 Aug 2026 (Tue)",
+          "19 Aug 2026 (Wed)"
+        ],
+        "dateRange": "17 Aug 2026 (Mon) to 19 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 6,
+        "unit": "Unit 2: Software Requirements Analysis and Specification",
+        "topic": "SRS documentation and use case modeling",
+        "subTopics": [
+          "IEEE 830 SRS structure",
+          "Use case diagram creation",
+          "Activity diagram basics"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "20 Aug 2026 (Thu)",
+          "21 Aug 2026 (Fri)",
+          "24 Aug 2026 (Mon)"
+        ],
+        "dateRange": "20 Aug 2026 (Thu) to 24 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 7,
+        "unit": "Unit 3: Software Architecture & Design",
+        "topic": "Architectural styles and patterns",
+        "subTopics": [
+          "Layered architecture",
+          "Client‑Server pattern",
+          "Microservices architecture",
+          "Event‑Driven architecture"
+        ],
+        "lectures": 2,
+        "targetDates": [
+          "25 Aug 2026 (Tue)",
+          "26 Aug 2026 (Wed)"
+        ],
+        "dateRange": "25 Aug 2026 (Tue) to 26 Aug 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 8,
+        "unit": "Unit 3: Software Architecture & Design",
+        "topic": "Object‑Oriented Design and modeling",
+        "subTopics": [
+          "Class diagram fundamentals",
+          "Sequence diagram usage",
+          "State diagram concepts",
+          "OO design principles"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "27 Aug 2026 (Thu)",
+          "28 Aug 2026 (Fri)",
+          "31 Aug 2026 (Mon)"
+        ],
+        "dateRange": "27 Aug 2026 (Thu) to 31 Aug 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 9,
+        "unit": "Unit 3: Software Architecture & Design",
+        "topic": "Design principles and refactoring",
+        "subTopics": [
+          "SOLID principles",
+          "High cohesion",
+          "Loose coupling",
+          "Refactoring techniques"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "01 Sep 2026 (Tue)",
+          "02 Sep 2026 (Wed)",
+          "03 Sep 2026 (Thu)"
+        ],
+        "dateRange": "01 Sep 2026 (Tue) to 03 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 10,
+        "unit": "Unit 4: Software Testing and Quality Assurance",
+        "topic": "Testing fundamentals and test levels",
+        "subTopics": [
+          "Verification vs validation",
+          "Unit testing",
+          "Integration testing",
+          "System testing",
+          "Acceptance testing"
+        ],
+        "lectures": 2,
+        "targetDates": [
+          "07 Sep 2026 (Mon)",
+          "08 Sep 2026 (Tue)"
+        ],
+        "dateRange": "07 Sep 2026 (Mon) to 08 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 11,
+        "unit": "Unit 4: Software Testing and Quality Assurance",
+        "topic": "Black‑box and white‑box testing techniques",
+        "subTopics": [
+          "Equivalence partitioning",
+          "Boundary value analysis",
+          "Control flow testing",
+          "Cyclomatic complexity"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "09 Sep 2026 (Wed)",
+          "10 Sep 2026 (Thu)",
+          "11 Sep 2026 (Fri)"
+        ],
+        "dateRange": "09 Sep 2026 (Wed) to 11 Sep 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 12,
+        "unit": "Unit 4: Software Testing and Quality Assurance",
+        "topic": "Quality assurance processes and automation",
+        "subTopics": [
+          "ISO 9000 overview",
+          "CMMI maturity levels",
+          "Automated testing tools",
+          "CI/CD pipeline integration"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "14 Sep 2026 (Mon)",
+          "15 Sep 2026 (Tue)",
+          "16 Sep 2026 (Wed)"
+        ],
+        "dateRange": "14 Sep 2026 (Mon) to 16 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 13,
+        "unit": "Unit 5: Software Project Management and Maintenance",
+        "topic": "Project estimation techniques",
+        "subTopics": [
+          "COCOMO model basics",
+          "Function point analysis steps"
+        ],
+        "lectures": 2,
+        "targetDates": [
+          "17 Sep 2026 (Thu)",
+          "18 Sep 2026 (Fri)"
+        ],
+        "dateRange": "17 Sep 2026 (Thu) to 18 Sep 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 14,
+        "unit": "Unit 5: Software Project Management and Maintenance",
+        "topic": "Risk and configuration management",
+        "subTopics": [
+          "Risk identification and mitigation",
+          "Git version control",
+          "Branching strategies (Gitflow, trunk‑based)"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "21 Sep 2026 (Mon)",
+          "22 Sep 2026 (Tue)",
+          "23 Sep 2026 (Wed)"
+        ],
+        "dateRange": "21 Sep 2026 (Mon) to 23 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 15,
+        "unit": "Unit 5: Software Project Management and Maintenance",
+        "topic": "Software maintenance and DevOps overview",
+        "subTopics": [
+          "Corrective, adaptive, perfective maintenance",
+          "Legacy system evolution strategies",
+          "DevOps principles and practices"
+        ],
+        "lectures": 3,
+        "targetDates": [
+          "24 Sep 2026 (Thu)",
+          "25 Sep 2026 (Fri)",
+          "28 Sep 2026 (Mon)"
+        ],
+        "dateRange": "24 Sep 2026 (Thu) to 28 Sep 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      }
+    ],
+    "stats": {
+      "totalLectures": 40,
+      "totalDays": 40,
+      "semesterExceeded": false,
+      "overflowLecturesCount": 0,
+      "completionEstimatedDate": "28 Sep 2026 (Mon)"
+    },
+    "id": "plan_1790753024141_ys7oht",
+    "updatedAt": "2026-09-30T07:23:44.141Z",
+    "createdAt": "2026-09-30T07:23:44.141Z"
+  },
+  {
+    "meta": {
+      "subjectName": "Software Engineering",
+      "subjectCode": "CS-301",
+      "credits": 3,
+      "totalHours": 40,
+      "startDate": "2026-08-03",
+      "endDate": "2026-11-20"
+    },
+    "topics": [
+      {
+        "srNo": 1,
+        "unit": "Unit 1",
+        "topic": "Introduction & SDLC",
+        "lectures": 4,
+        "targetDates": [
+          "03 Aug 2026 (Mon)",
+          "04 Aug 2026 (Tue)",
+          "05 Aug 2026 (Wed)",
+          "06 Aug 2026 (Thu)"
+        ],
+        "dateRange": "03 Aug 2026 (Mon) to 06 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      }
+    ],
+    "stats": {
+      "totalLectures": 4,
+      "totalDays": 4,
+      "semesterExceeded": false,
+      "overflowLecturesCount": 0,
+      "completionEstimatedDate": "06 Aug 2026 (Thu)"
+    },
+    "id": "plan_1790424848334_scijsc",
+    "updatedAt": "2026-09-26T12:14:08.334Z",
+    "createdAt": "2026-09-26T12:14:08.334Z"
+  }
+]
