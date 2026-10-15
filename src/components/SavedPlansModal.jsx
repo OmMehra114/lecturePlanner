@@ -8,25 +8,29 @@ export default function SavedPlansModal({ isOpen, onClose, onLoadPlan }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
-      fetchPlans();
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+    let ignore = false;
 
-  const fetchPlans = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch('/api/schedules');
-      const data = await res.json();
-      if (data.success) {
-        setPlans(data.schedules || []);
-      }
-    } catch (err) {
-      console.error('Failed to load saved plans:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    queueMicrotask(() => {
+      if (!ignore) setLoading(true);
+    });
+
+    fetch('/api/schedules')
+      .then((res) => res.json())
+      .then((data) => {
+        if (!ignore && data.success) {
+          setPlans(data.schedules || []);
+        }
+      })
+      .catch((err) => console.error('Failed to load saved plans:', err))
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [isOpen]);
 
   const handleDelete = async (id, e) => {
     e.stopPropagation();
@@ -76,7 +80,7 @@ export default function SavedPlansModal({ isOpen, onClose, onLoadPlan }) {
             <div className="py-12 text-center text-slate-400 space-y-2 border border-dashed border-slate-200 rounded-2xl">
               <FolderOpen className="w-8 h-8 mx-auto text-slate-300" />
               <p className="text-xs font-semibold text-slate-600">No Saved Plans Found</p>
-              <p className="text-[11px] text-slate-400">Generate a lecture plan and click "Save Plan" to view it here anytime.</p>
+              <p className="text-[11px] text-slate-400">Generate a lecture plan and click &quot;Save Plan&quot; to view it here anytime.</p>
             </div>
           ) : (
             <div className="space-y-3">

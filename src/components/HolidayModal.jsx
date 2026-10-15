@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { X, Plus, Trash2, Calendar, ShieldCheck, Tag } from 'lucide-react';
-import { DEFAULT_HOLIDAYS } from '@/lib/holidays';
+import { DEFAULT_HOLIDAYS } from '../lib/holidays';
 
 export default function HolidayModal({ isOpen, onClose, customHolidays, setCustomHolidays, includeDefaultHolidays, setIncludeDefaultHolidays }) {
   const [newHoliday, setNewHoliday] = useState({

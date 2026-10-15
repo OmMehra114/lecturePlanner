@@ -1,6 +1,7 @@
 'use client';
 
 import { Sparkles, Calendar, BookOpen, FolderOpen } from 'lucide-react';
+import { UserButton } from '@clerk/nextjs';
 
 export default function Navbar({ onReset, hasResults, onOpenSavedPlans }) {
   return (
@@ -24,10 +25,10 @@ export default function Navbar({ onReset, hasResults, onOpenSavedPlans }) {
         </div>
 
         {/* Right Action Icons & Badges */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <button
             onClick={onOpenSavedPlans}
-            className="flex items-center gap-1.5 text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition shadow-xs"
+            className="flex items-center gap-1.5 text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition shadow-xs cursor-pointer"
           >
             <FolderOpen className="w-3.5 h-3.5 text-indigo-400" />
             <span>Saved Plans</span>
@@ -41,12 +42,16 @@ export default function Navbar({ onReset, hasResults, onOpenSavedPlans }) {
           {hasResults && (
             <button
               onClick={onReset}
-              className="flex items-center gap-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition"
+              className="flex items-center gap-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition cursor-pointer"
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>New Plan</span>
             </button>
           )}
+
+          <div className="pl-1 border-l border-slate-800 flex items-center">
+            <UserButton afterSignOutUrl="/" />
+          </div>
         </div>
       </div>
     </header>

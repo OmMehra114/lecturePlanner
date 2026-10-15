@@ -21,8 +21,8 @@ import {
   BookmarkCheck,
   ChevronDown
 } from 'lucide-react';
-import { exportToCSV, exportToExcel, exportToJSON } from '@/lib/exportUtils';
-import { scheduleLectures } from '@/lib/scheduler';
+import { exportToCSV, exportToExcel, exportToJSON } from '../lib/exportUtils';
+import { scheduleLectures } from '../lib/scheduler';
 
 export default function ScheduleTable({ initialData, onUpdate }) {
   const [data, setData] = useState(initialData);

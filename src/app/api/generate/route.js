@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { parseFileToText } from '@/lib/fileParser';
-import { generateTopicsFromSyllabus } from '@/lib/ai';
-import { scheduleLectures } from '@/lib/scheduler';
+import { parseFileToText } from '../../../lib/fileParser';
+import { generateTopicsFromSyllabus } from '../../../lib/ai';
+import { scheduleLectures } from '../../../lib/scheduler';
 
 export async function POST(req) {
   try {

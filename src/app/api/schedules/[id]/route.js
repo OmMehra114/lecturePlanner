@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getScheduleById, deleteSchedule } from '@/lib/storage';
+import { getScheduleById, deleteSchedule } from '../../../../lib/storage';
 
 export async function GET(req, { params }) {
   try {
