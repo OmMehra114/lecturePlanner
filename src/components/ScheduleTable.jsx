@@ -59,23 +59,32 @@ export default function ScheduleTable({ initialData, onUpdate }) {
     if (onUpdate) onUpdate(newData);
   };
 
-  // Save plan to backend
+  // Save plan to database backend
   const handleSavePlan = async () => {
     setIsSaving(true);
     setSavedSuccess(false);
     try {
-      const res = await fetch('/api/schedules', {
-        method: 'POST',
+      const endpoint = data.id ? `/api/plans/${data.id}` : '/api/plans';
+      const method = data.id ? 'PATCH' : 'POST';
+      const res = await fetch(endpoint, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
       const resData = await res.json();
       if (resData.success) {
+        if (resData.plan?.id && !data.id) {
+          const withId = { ...data, id: resData.plan.id };
+          setData(withId);
+          if (onUpdate) onUpdate(withId);
+        }
         setSavedSuccess(true);
         setTimeout(() => setSavedSuccess(false), 3000);
+      } else {
+        alert(resData.error || 'Failed to save plan to database');
       }
     } catch (err) {
-      console.error('Error saving schedule:', err);
+      console.error('Error saving plan to database:', err);
     } finally {
       setIsSaving(false);
     }

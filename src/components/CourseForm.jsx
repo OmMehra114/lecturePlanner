@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   BookOpen, 
   Calendar as CalendarIcon, 
@@ -48,6 +48,22 @@ export default function CourseForm({ onSubmit, isLoading }) {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
   const [file, setFile] = useState(null);
   const [dragActive, setDragActive] = useState(false);
+
+  // Auto-sync custom blackout dates & holidays configured in the Academic Calendar
+  useEffect(() => {
+    fetch('/api/calendar')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && Array.isArray(data.customEvents) && data.customEvents.length > 0) {
+          setCustomHolidays((prev) => {
+            const existingIds = new Set(prev.map((h) => h.id));
+            const newEvents = data.customEvents.filter((ev) => !existingIds.has(ev.id));
+            return [...prev, ...newEvents];
+          });
+        }
+      })
+      .catch((err) => console.error('Failed to load custom calendar holidays:', err));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -290,14 +306,26 @@ export default function CourseForm({ onSubmit, isLoading }) {
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setIsHolidayModalOpen(true)}
-                  className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"
-                >
-                  <Settings2 className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Holidays ({customHolidays.length + (includeDefaultHolidays ? 14 : 0)})</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="/calendar"
+                    target="_blank"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2.5 py-1.5 rounded-lg transition"
+                    title="Open full interactive academic calendar"
+                  >
+                    <CalendarIcon className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>Academic Calendar ({customHolidays.length} Blackouts)</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsHolidayModalOpen(true)}
+                    className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"
+                  >
+                    <Settings2 className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Holidays ({customHolidays.length + (includeDefaultHolidays ? 14 : 0)})</span>
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

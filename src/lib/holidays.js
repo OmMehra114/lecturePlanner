@@ -33,11 +33,11 @@ export function isHoliday(date, customHolidays = [], includeDefaults = true) {
       if (item.endDate) {
         const endDate = typeof item.endDate === 'string' ? parseISO(item.endDate) : item.endDate;
         if (isWithinInterval(date, { start: startDate, end: endDate })) {
-          return { isHoliday: true, holidayName: item.name, type: item.type || 'holiday' };
+          return { isHoliday: true, holidayName: item.name || item.title || 'Academic Blackout', type: item.type || 'holiday' };
         }
       } else {
         if (isSameDay(date, startDate)) {
-          return { isHoliday: true, holidayName: item.name, type: item.type || 'holiday' };
+          return { isHoliday: true, holidayName: item.name || item.title || 'Academic Blackout', type: item.type || 'holiday' };
         }
       }
     } catch {

@@ -213,3 +213,132 @@ export async function getReceivedPlans(userId) {
     },
   });
 }
+
+/**
+ * Clear/delete all lecture plans for a user
+ */
+export async function clearAllUserLecturePlans(userId) {
+  return await prisma.lecturePlan.deleteMany({
+    where: { userId },
+  });
+}
+
+/**
+ * Toggle favorite flag on a plan
+ */
+export async function toggleFavoritePlan(planId, userId) {
+  const plan = await prisma.lecturePlan.findFirst({
+    where: { id: planId, userId },
+  });
+
+  if (!plan) {
+    throw new Error('Plan not found or unauthorized');
+  }
+
+  return await prisma.lecturePlan.update({
+    where: { id: planId },
+    data: { isFavorite: !plan.isFavorite },
+  });
+}
+
+/**
+ * Duplicate / clone an existing plan
+ */
+export async function duplicateLecturePlan(planId, userId) {
+  const original = await prisma.lecturePlan.findFirst({
+    where: {
+      id: planId,
+      OR: [
+        { userId },
+        { shares: { some: { receiverId: userId } } },
+      ],
+    },
+    include: { topics: { orderBy: { srNo: 'asc' } } },
+  });
+
+  if (!original) {
+    throw new Error('Plan not found or unauthorized to clone');
+  }
+
+  return await prisma.lecturePlan.create({
+    data: {
+      userId,
+      subjectName: `${original.subjectName} (Copy)`,
+      subjectCode: original.subjectCode,
+      department: original.department,
+      credits: original.credits,
+      totalHours: original.totalHours,
+      startDate: original.startDate,
+      endDate: original.endDate,
+      teachingDays: original.teachingDays,
+      includeFridays: original.includeFridays,
+      fridayOption: original.fridayOption,
+      customHolidays: original.customHolidays,
+      syllabusRaw: original.syllabusRaw,
+      stats: original.stats,
+      status: 'SAVED',
+      topics: {
+        create: (original.topics || []).map((t) => ({
+          srNo: t.srNo,
+          unit: t.unit,
+          topic: t.topic,
+          subTopics: t.subTopics || [],
+          lectures: t.lectures,
+          targetDates: t.targetDates || [],
+          dateRange: t.dateRange,
+          isOverflow: t.isOverflow,
+          completed: false,
+          notes: t.notes,
+        })),
+      },
+    },
+    include: {
+      topics: { orderBy: { srNo: 'asc' } },
+    },
+  });
+}
+
+/**
+ * Normalizes a database LecturePlan model to the structure expected by the client UI
+ */
+export function formatPlanForClient(plan) {
+  if (!plan) return null;
+  return {
+    id: plan.id,
+    success: true,
+    meta: {
+      subjectName: plan.subjectName,
+      subjectCode: plan.subjectCode || '',
+      department: plan.department || '',
+      credits: plan.credits || 3,
+      totalHours: plan.totalHours || 40,
+      startDate: plan.startDate,
+      endDate: plan.endDate || '',
+      teachingDays: plan.teachingDays || [1, 2, 3, 4, 5],
+      includeFridays: plan.includeFridays ?? true,
+      fridayOption: plan.fridayOption || 'full',
+      customHolidays: plan.customHolidays || [],
+      syllabusText: plan.syllabusRaw || '',
+    },
+    topics: (plan.topics || []).map((t) => ({
+      srNo: t.srNo,
+      unit: t.unit || '',
+      topic: t.topic || '',
+      subTopics: t.subTopics || [],
+      lectures: t.lectures || 1,
+      targetDates: t.targetDates || [],
+      dateRange: t.dateRange || '',
+      isOverflow: Boolean(t.isOverflow),
+      completed: Boolean(t.completed),
+      notes: t.notes || '',
+    })),
+    stats: plan.stats || {},
+    status: plan.status,
+    isFavorite: Boolean(plan.isFavorite),
+    createdAt: plan.createdAt,
+    updatedAt: plan.updatedAt,
+    user: plan.user || null,
+    shares: plan.shares || [],
+  };
+}
+

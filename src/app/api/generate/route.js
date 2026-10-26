@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { parseFileToText } from '../../../lib/fileParser';
 import { generateTopicsFromSyllabus } from '../../../lib/ai';
 import { scheduleLectures } from '../../../lib/scheduler';
+import { getAuthenticatedUser } from '../../../lib/authSync';
+import { saveLecturePlan } from '../../../lib/planService';
 
 export async function POST(req) {
   try {
@@ -35,6 +37,29 @@ export async function POST(req) {
       } catch {
         customHolidays = [];
       }
+    }
+
+    // Automatically incorporate user's persistent calendar blackout dates from database
+    let authenticatedUser = null;
+    try {
+      authenticatedUser = await getAuthenticatedUser();
+      if (authenticatedUser?.preferences?.calendarEvents && Array.isArray(authenticatedUser.preferences.calendarEvents)) {
+        const existingIds = new Set(customHolidays.map((h) => h.id));
+        for (const ev of authenticatedUser.preferences.calendarEvents) {
+          if (!existingIds.has(ev.id)) {
+            customHolidays.push({
+              id: ev.id,
+              name: ev.title || ev.name,
+              title: ev.title || ev.name,
+              date: ev.date,
+              endDate: ev.endDate,
+              type: ev.type || 'custom',
+            });
+          }
+        }
+      }
+    } catch (authErr) {
+      console.warn('Could not load user calendar preferences for generation:', authErr);
     }
 
     const file = formData.get('file');
@@ -74,21 +99,41 @@ export async function POST(req) {
       includeDefaultHolidays,
     });
 
+    const meta = {
+      subjectName,
+      subjectCode,
+      department,
+      credits,
+      totalHours,
+      startDate,
+      endDate,
+      teachingDays,
+      includeFridays,
+      customHolidays,
+      includeDefaultHolidays,
+      syllabusText,
+    };
+
+    // Auto-save plan to database if user is authenticated
+    let planId = null;
+    try {
+      const user = authenticatedUser || (await getAuthenticatedUser());
+      if (user) {
+        const savedPlan = await saveLecturePlan(user.id, {
+          meta,
+          topics: scheduledTopics,
+          stats,
+        });
+        planId = savedPlan.id;
+      }
+    } catch (saveErr) {
+      console.warn('Auto-save to database failed during generation:', saveErr);
+    }
+
     return NextResponse.json({
       success: true,
-      meta: {
-        subjectName,
-        subjectCode,
-        department,
-        credits,
-        totalHours,
-        startDate,
-        endDate,
-        teachingDays,
-        includeFridays,
-        customHolidays,
-        includeDefaultHolidays,
-      },
+      id: planId,
+      meta,
       topics: scheduledTopics,
       stats,
     });
