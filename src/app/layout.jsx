@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
+import { ClerkProvider, ClerkLoading, ClerkLoaded } from '@clerk/nextjs'
 import QueryProvider from "@/providers/QueryProvider";
+import AppLoader from "@/components/AppLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,12 @@ export default function RootLayout({ children }) {
     >
       <ClerkProvider>
         <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
-          <QueryProvider>{children}</QueryProvider>
+          <ClerkLoading>
+            <AppLoader text="Authenticating Session..." />
+          </ClerkLoading>
+          <ClerkLoaded>
+            <QueryProvider>{children}</QueryProvider>
+          </ClerkLoaded>
         </body>
       </ClerkProvider>
     </html>
