@@ -20,13 +20,14 @@ import {
   Save,
   BookmarkCheck,
   ChevronDown,
-  Share2
+  Share2,
+  PenTool
 } from 'lucide-react';
 import { exportToCSV, exportToExcel, exportToJSON } from '../lib/exportUtils';
 import { scheduleLectures } from '../lib/scheduler';
 import SharePlanModal from './SharePlanModal';
 
-export default function ScheduleTable({ initialData, onUpdate }) {
+export default function ScheduleTable({ initialData, onUpdate, onOpenEditor }) {
   const [data, setData] = useState(initialData);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all'); // 'all', 'overflow', 'completed'
@@ -270,6 +271,17 @@ export default function ScheduleTable({ initialData, onUpdate }) {
                 </div>
               )}
             </div>
+
+            {onOpenEditor && (
+              <button
+                onClick={onOpenEditor}
+                className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white rounded-xl font-bold text-xs shadow-md transition cursor-pointer"
+                title="Open in Editor-X Document & PDF Studio"
+              >
+                <PenTool className="w-4 h-4" />
+                <span>Document & PDF Studio</span>
+              </button>
+            )}
 
             <button
               onClick={() => window.print()}

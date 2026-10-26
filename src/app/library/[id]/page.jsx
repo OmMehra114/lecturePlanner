@@ -1,11 +1,12 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import ScheduleTable from '@/components/ScheduleTable';
+import EditorX from '@/components/editor-x';
 import { usePlanQuery } from '@/lib/queries/usePlans';
-import { ArrowLeft, AlertCircle, FolderOpen, Calendar, Clock, BookOpen, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, AlertCircle, FolderOpen, Calendar, Clock, BookOpen, ShieldCheck, PenTool } from 'lucide-react';
 
 export default function PlanDetailPage({ params }) {
   const unwrappedParams = use(params);
@@ -15,6 +16,7 @@ export default function PlanDetailPage({ params }) {
 
   const plan = data?.plan;
   const isOwner = data?.isOwner;
+  const [viewMode, setViewMode] = useState('table');
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col selection:bg-indigo-500 selection:text-white">
@@ -92,10 +94,52 @@ export default function PlanDetailPage({ params }) {
           </div>
         )}
 
-        {/* Render Interactive Plan Table */}
+        {/* Render Interactive Plan Table or Editor-X */}
         {!isLoading && !isError && plan && (
           <div className="space-y-6">
-            <ScheduleTable initialData={plan} />
+            {/* View Switcher Bar */}
+            <div className="flex items-center justify-between bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs print:hidden">
+              <span className="text-xs font-bold text-slate-700">
+                Course Plan View & Export Mode:
+              </span>
+              <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-bold">
+                <button
+                  onClick={() => setViewMode('editor')}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition cursor-pointer ${
+                    viewMode === 'editor'
+                      ? 'bg-white text-indigo-600 shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <PenTool className="w-3.5 h-3.5" />
+                  <span>Document & PDF Studio</span>
+                </button>
+                <button
+                  onClick={() => setViewMode('table')}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition cursor-pointer ${
+                    viewMode === 'table'
+                      ? 'bg-white text-indigo-600 shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Schedule Grid Table</span>
+                </button>
+              </div>
+            </div>
+
+            {viewMode === 'editor' ? (
+              <EditorX
+                plan={plan}
+                onSave={() => refetch()}
+                onClose={() => setViewMode('table')}
+              />
+            ) : (
+              <ScheduleTable
+                initialData={plan}
+                onOpenEditor={() => setViewMode('editor')}
+              />
+            )}
           </div>
         )}
       </main>
