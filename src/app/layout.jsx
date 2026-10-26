@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
+import QueryProvider from "@/providers/QueryProvider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,7 +25,9 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <ClerkProvider>
-        <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">{children}</body>
+        <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+          <QueryProvider>{children}</QueryProvider>
+        </body>
       </ClerkProvider>
     </html>
   );

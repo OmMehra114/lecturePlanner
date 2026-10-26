@@ -19,10 +19,12 @@ import {
   Check,
   Save,
   BookmarkCheck,
-  ChevronDown
+  ChevronDown,
+  Share2
 } from 'lucide-react';
 import { exportToCSV, exportToExcel, exportToJSON } from '../lib/exportUtils';
 import { scheduleLectures } from '../lib/scheduler';
+import SharePlanModal from './SharePlanModal';
 
 export default function ScheduleTable({ initialData, onUpdate }) {
   const [data, setData] = useState(initialData);
@@ -32,6 +34,7 @@ export default function ScheduleTable({ initialData, onUpdate }) {
   const [exportDropdownOpen, setExportDropdownOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   const { meta = {}, topics = [], stats = {} } = data || {};
 
@@ -211,6 +214,16 @@ export default function ScheduleTable({ initialData, onUpdate }) {
                   <span>{isSaving ? 'Saving...' : 'Save Plan'}</span>
                 </>
               )}
+            </button>
+
+            {/* Share with Peer Button */}
+            <button
+              type="button"
+              onClick={() => setShareModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs transition bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 shadow-sm cursor-pointer"
+            >
+              <Share2 className="w-4 h-4 text-emerald-400" />
+              <span>Share with Peer</span>
             </button>
 
             {/* Export Dropdown */}
@@ -464,13 +477,17 @@ export default function ScheduleTable({ initialData, onUpdate }) {
           </table>
         </div>
       </div>
+
+      {/* Share with Peer Modal */}
+      <SharePlanModal
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        planData={data}
+      />
     </div>
   );
 }
 
-
-
-// 'use client';
 
 // import { useState, useMemo } from 'react';
 // import {

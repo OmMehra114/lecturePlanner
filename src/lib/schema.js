@@ -1,24 +1,49 @@
 import { z } from 'zod';
 
 export const CourseFormSchema = z.object({
-  subjectName: z.string().min(1, 'Subject name is required'),
-  subjectCode: z.string().optional().default(''),
-  department: z.string().optional().default(''),
-  credits: z.coerce.number().min(1).default(3),
-  totalHours: z.coerce.number().min(1).default(40),
+  subjectName: z.string().trim().min(2, 'Course / Subject name is required (at least 2 characters)'),
+  subjectCode: z.string().trim().optional().default(''),
+  department: z.string().trim().optional().default(''),
+  credits: z.coerce.number().min(1, 'Credits must be at least 1').max(20, 'Credits cannot exceed 20').default(3),
+  totalHours: z.coerce.number().min(5, 'Total hours must be at least 5').max(200, 'Total hours cannot exceed 200').default(40),
   startDate: z.string().min(1, 'Semester start date is required'),
   endDate: z.string().optional().default(''),
-  teachingDays: z.array(z.number()).default([1, 2, 3, 4, 5]), // 0=Sun, 1=Mon, ..., 6=Sat
+  teachingDays: z.array(z.number()).min(1, 'Please select at least one teaching day of the week'),
   includeFridays: z.boolean().default(true),
   fridayOption: z.enum(['full', 'half', 'exclude']).default('full'),
   customHolidays: z.array(z.object({
-    id: z.string(),
-    name: z.string(),
-    date: z.string(), // YYYY-MM-DD or range
+    id: z.string().optional(),
+    name: z.string().min(1, 'Holiday title is required'),
+    date: z.string().min(1, 'Date is required'),
     endDate: z.string().optional(),
     type: z.enum(['holiday', 'vacation', 'exam', 'blackout']).default('holiday'),
   })).default([]),
   syllabusText: z.string().optional().default(''),
+});
+
+export const SendConnectionSchema = z.object({
+  targetIdentifier: z
+    .string()
+    .trim()
+    .min(3, 'Please enter a valid email address or instructor ID')
+    .refine(
+      (val) => val.includes('@') ? z.string().email().safeParse(val).success : val.length >= 3,
+      { message: 'Please enter a valid email address' }
+    ),
+  message: z.string().trim().max(300, 'Note cannot exceed 300 characters').optional().default(''),
+});
+
+export const RespondConnectionSchema = z.object({
+  status: z.enum(['ACCEPTED', 'DECLINED'], {
+    errorMap: () => ({ message: 'Status must be either ACCEPTED or DECLINED' }),
+  }),
+});
+
+export const SharePlanSchema = z.object({
+  planId: z.string().min(1, 'Lecture plan ID is required'),
+  receiverId: z.string().min(1, 'Target peer ID is required'),
+  permission: z.enum(['VIEW', 'CLONE', 'EDIT']).default('VIEW'),
+  message: z.string().trim().max(500, 'Message cannot exceed 500 characters').optional().default(''),
 });
 
 export const TopicItemSchema = z.object({

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import Navbar from '../../components/Navbar';
 import CourseForm from '../../components/CourseForm';
 import ScheduleTable from '../../components/ScheduleTable';
@@ -8,16 +9,12 @@ import SavedPlansModal from '../../components/SavedPlansModal';
 import { Sparkles, AlertCircle, ArrowLeft } from 'lucide-react';
 
 export default function Home() {
-    const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
-    const [error, setError] = useState(null);
     const [savedModalOpen, setSavedModalOpen] = useState(false);
 
-    const handleFormSubmit = async (formData) => {
-        setLoading(true);
-        setError(null);
-
-        try {
+    // TanStack Query Mutation for schedule generation
+    const generateMutation = useMutation({
+        mutationFn: async (formData) => {
             const body = new FormData();
             Object.keys(formData).forEach((key) => {
                 if (key === 'file' && formData[key]) {
@@ -40,23 +37,25 @@ export default function Home() {
                 throw new Error(data.error || 'Failed to generate lecture plan. Please check your inputs.');
             }
 
+            return data;
+        },
+        onSuccess: (data) => {
             setResult(data);
-        } catch (err) {
-            console.error('Schedule generation error:', err);
-            setError(err.message || 'Something went wrong while connecting to the AI scheduling service.');
-        } finally {
-            setLoading(false);
-        }
+        },
+    });
+
+    const handleFormSubmit = (formData) => {
+        generateMutation.mutate(formData);
     };
 
     const handleReset = () => {
+        generateMutation.reset();
         setResult(null);
-        setError(null);
     };
 
     const handleLoadSavedPlan = (plan) => {
+        generateMutation.reset();
         setResult(plan);
-        setError(null);
     };
 
     return (
@@ -85,18 +84,18 @@ export default function Home() {
                         </div>
 
                         {/* Error Notification */}
-                        {error && (
+                        {generateMutation.error && (
                             <div className="max-w-4xl mx-auto p-4 bg-red-50/90 border border-red-200 text-red-800 rounded-2xl text-xs sm:text-sm flex items-start gap-3 shadow-sm animate-in fade-in">
                                 <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                                 <div className="space-y-1">
                                     <span className="font-bold block">Generation Error</span>
-                                    <span>{error}</span>
+                                    <span>{generateMutation.error.message || 'Something went wrong while connecting to the AI scheduling service.'}</span>
                                 </div>
                             </div>
                         )}
 
                         {/* Course Configuration Form */}
-                        <CourseForm onSubmit={handleFormSubmit} isLoading={loading} />
+                        <CourseForm onSubmit={handleFormSubmit} isLoading={generateMutation.isPending} />
                     </div>
                 ) : (
                     <div className="space-y-6">

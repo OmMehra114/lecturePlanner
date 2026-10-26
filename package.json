@@ -11,7 +11,9 @@
   "dependencies": {
     "@clerk/nextjs": "^7.9.15",
     "@google/generative-ai": "^0.24.1",
+    "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.0",
+    "@tanstack/react-query": "^5.104.5",
     "date-fns": "^4.4.0",
     "lucide-react": "^1.48.0",
     "mammoth": "^1.12.3",
@@ -19,6 +21,7 @@
     "openai": "^7.23.0",
     "pdf-parse": "^2.4.5",
     "pdf2json": "^4.0.3",
+    "pg": "^8.23.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "xlsx": "^0.18.5",
