@@ -58,26 +58,28 @@ export default function CalendarPage() {
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-8">
-        {/* Header Banner */}
-        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden border border-slate-800">
-          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-            <div className="max-w-2xl space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-semibold tracking-wide uppercase">
-                <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
-                Automatic Lecture Clash Prevention
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Academic Holiday & Blackout Calendar
-              </h1>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Configure semester holidays, exam blocks, and faculty off-days. Any dates scheduled here are automatically skipped by the lecture scheduler when generating course timetables.
-              </p>
+        {/* Clean & Rich Modern Header */}
+        <div className="mb-6 pb-5 border-b border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
+                Lecture Clash Prevention
+              </span>
+              <span className="text-xs text-slate-400 font-medium hidden sm:inline">• Academic Calendar</span>
             </div>
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Academic Holiday & Blackout Calendar
+            </h1>
+            <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
+              Configure institutional holidays, exam blocks, and breaks. All dates are automatically bypassed during timetable generation.
+            </p>
+          </div>
 
+          <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg shadow-indigo-600/30 transition shrink-0"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xs transition"
             >
               <Sparkles className="w-4 h-4" />
               <span>Generate Course Plan</span>

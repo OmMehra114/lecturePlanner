@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { usePlansQuery } from '@/lib/queries/usePlans';
 import { SAMPLE_SYLLABI } from '../../components/SamplePresets';
+import AppLoader from '@/components/AppLoader';
 
 function DashboardContent() {
     const searchParams = useSearchParams();
@@ -228,34 +229,34 @@ function DashboardContent() {
                     </div>
                 ) : !isLoadingFromUrl && result ? (
                     <div className="space-y-6">
-                        {/* Powerful AI Curriculum Optimization & Health Score Banner */}
-                        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl p-4 sm:p-5 text-white border border-slate-800 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        {/* Sleek Curriculum Health & Status Header */}
+                        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center shrink-0">
                                     <TrendingUp className="w-5 h-5" />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <h3 className="font-bold text-sm text-white">
-                                            Academic Curriculum Health Score: <span className="text-emerald-400 font-extrabold">98% (Optimal)</span>
+                                        <h3 className="font-bold text-sm text-slate-900">
+                                            Academic Curriculum Health Score: <span className="text-emerald-600 font-extrabold">98% (Optimal)</span>
                                         </h3>
-                                        <span className="bg-emerald-500/20 text-emerald-300 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-emerald-500/30">
+                                        <span className="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-200">
                                             Auto-Balanced
                                         </span>
                                     </div>
-                                    <p className="text-xs text-slate-300 mt-0.5">
+                                    <p className="text-xs text-slate-500 mt-0.5">
                                         All {result.topics?.length || 0} module topics scheduled with holiday clash protection. Auto-saved to your database library.
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex items-center gap-2 text-xs">
-                                <div className="bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-slate-300">
-                                    <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
+                                <div className="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-slate-600 font-medium">
+                                    <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
                                     <span>Holidays Bypassed</span>
                                 </div>
-                                <div className="bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-slate-300">
-                                    <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                                <div className="bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-slate-600 font-medium">
+                                    <Clock className="w-3.5 h-3.5 text-emerald-600" />
                                     <span>{result.meta?.totalHours || 40} Target Hours</span>
                                 </div>
                             </div>
@@ -329,12 +330,7 @@ function DashboardContent() {
 
 export default function Home() {
     return (
-        <Suspense fallback={
-            <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center space-y-3">
-                <div className="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-                <p className="text-sm text-slate-500 font-medium">Loading Lecture Planner...</p>
-            </div>
-        }>
+        <Suspense fallback={<AppLoader text="Loading Lecture Planner..." />}>
             <DashboardContent />
         </Suspense>
     );

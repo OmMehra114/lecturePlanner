@@ -10,14 +10,17 @@ export const CourseFormSchema = z.object({
   endDate: z.string().optional().default(''),
   teachingDays: z.array(z.number()).min(1, 'Please select at least one teaching day of the week'),
   includeFridays: z.boolean().default(true),
-  fridayOption: z.enum(['full', 'half', 'exclude']).default('full'),
-  customHolidays: z.array(z.object({
-    id: z.string().optional(),
-    name: z.string().min(1, 'Holiday title is required'),
-    date: z.string().min(1, 'Date is required'),
-    endDate: z.string().optional(),
-    type: z.enum(['holiday', 'vacation', 'exam', 'blackout']).default('holiday'),
-  })).default([]),
+  fridayOption: z.string().optional().default('full'),
+  customHolidays: z.array(
+    z.object({
+      id: z.string().optional(),
+      name: z.string().optional(),
+      title: z.string().optional(),
+      date: z.string().optional(),
+      endDate: z.string().optional(),
+      type: z.string().optional(),
+    }).passthrough()
+  ).default([]),
   syllabusText: z.string().optional().default(''),
 });
 

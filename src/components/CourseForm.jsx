@@ -128,10 +128,20 @@ export default function CourseForm({ onSubmit, isLoading }) {
     e.preventDefault();
     setFieldErrors({});
 
+    // Normalize holidays to ensure clean object structure
+    const normalizedHolidays = customHolidays.map((h) => ({
+      ...h,
+      name: h.name || h.title || 'Academic Blackout',
+      title: h.title || h.name || 'Academic Blackout',
+      date: h.date,
+      endDate: h.endDate,
+      type: h.type || 'custom',
+    }));
+
     // Zod validation with CourseFormSchema
     const result = CourseFormSchema.safeParse({
       ...formData,
-      customHolidays,
+      customHolidays: normalizedHolidays,
     });
 
     const newErrors = {};
@@ -150,13 +160,14 @@ export default function CourseForm({ onSubmit, isLoading }) {
 
     if (Object.keys(newErrors).length > 0) {
       setFieldErrors(newErrors);
+      console.warn('CourseForm validation errors:', newErrors);
       return;
     }
 
     onSubmit({
       ...formData,
       file,
-      customHolidays,
+      customHolidays: normalizedHolidays,
       includeDefaultHolidays,
     });
   };
@@ -521,6 +532,23 @@ export default function CourseForm({ onSubmit, isLoading }) {
               </div>
             </div>
           </div>
+
+          {/* Validation Errors Notice */}
+          {Object.keys(fieldErrors).length > 0 && (
+            <div className="p-4 bg-red-50 border border-red-200 text-red-800 rounded-2xl text-xs sm:text-sm flex items-start gap-3 shadow-xs animate-in fade-in">
+              <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <span className="font-bold block">Please complete the required fields:</span>
+                <ul className="list-disc list-inside space-y-0.5 text-red-700">
+                  {Object.entries(fieldErrors).map(([field, msg]) => (
+                    <li key={field}>
+                      <span className="capitalize font-semibold">{field.replace(/([A-Z])/g, ' $1')}:</span> {msg}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
 
           {/* Generate Button Bar */}
           <div className="flex justify-end pt-2">

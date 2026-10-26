@@ -10,6 +10,11 @@ import prisma from './prisma';
 export async function saveLecturePlan(userId, planData) {
   const { id, meta, topics, stats, isFavorite, status } = planData;
 
+  const combinedStats = {
+    ...(stats || {}),
+    ...(meta?.documentData ? { documentData: meta.documentData } : (stats?.documentData ? { documentData: stats.documentData } : {})),
+  };
+
   const dataPayload = {
     subjectName: meta?.subjectName || 'Untitled Course',
     subjectCode: meta?.subjectCode || null,
@@ -23,7 +28,7 @@ export async function saveLecturePlan(userId, planData) {
     fridayOption: meta?.fridayOption || 'full',
     customHolidays: meta?.customHolidays || [],
     syllabusRaw: meta?.syllabusText || null,
-    stats: stats || {},
+    stats: combinedStats,
     status: status || 'SAVED',
     isFavorite: Boolean(isFavorite),
   };
@@ -319,6 +324,7 @@ export function formatPlanForClient(plan) {
       fridayOption: plan.fridayOption || 'full',
       customHolidays: plan.customHolidays || [],
       syllabusText: plan.syllabusRaw || '',
+      documentData: plan.stats?.documentData || null,
     },
     topics: (plan.topics || []).map((t) => ({
       srNo: t.srNo,

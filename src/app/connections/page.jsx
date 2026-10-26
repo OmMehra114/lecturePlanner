@@ -120,39 +120,40 @@ export default function ConnectionsPage() {
       <Navbar />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Header Banner */}
-        <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden mb-8 border border-slate-800">
-          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-semibold tracking-wide uppercase">
-              <Users className="w-3.5 h-3.5 text-indigo-400" />
-              Academic Peer Collaboration
+        {/* Clean & Rich Modern Header */}
+        <div className="mb-6 pb-5 border-b border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                <Users className="w-3.5 h-3.5 text-indigo-600" />
+                Peer Collaboration
+              </span>
+              <span className="text-xs text-slate-400 font-medium hidden sm:inline">• Faculty Network</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               Instructor Network & Plan Sharing
             </h1>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Connect with fellow university professors, HODs, and curriculum coordinators. Share lesson plans, align semester objectives, and import peer course structures seamlessly.
+            <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
+              Connect with university professors, share course syllabi, and collaborate on curriculum design.
             </p>
           </div>
 
-          {/* Quick Metrics */}
-          <div className="mt-6 pt-6 border-t border-slate-800/80 flex flex-wrap items-center gap-4 text-xs font-medium">
-            <div className="bg-slate-800/80 border border-slate-700/60 px-3.5 py-1.5 rounded-xl flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{connections.length} Connected Colleague{connections.length === 1 ? '' : 's'}</span>
-            </div>
+          <div className="flex flex-wrap items-center gap-2 shrink-0 text-xs font-semibold">
+            <span className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 shadow-2xs flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span>{connections.length} Connected Colleagues</span>
+            </span>
             {pendingReceived.length > 0 && (
-              <div className="bg-indigo-500/20 border border-indigo-500/40 text-indigo-200 px-3.5 py-1.5 rounded-xl flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-indigo-400" />
-                <span>{pendingReceived.length} Incoming Request{pendingReceived.length === 1 ? '' : 's'}</span>
-              </div>
+              <span className="px-3 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 shadow-2xs flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+                <span>{pendingReceived.length} Incoming</span>
+              </span>
             )}
             {pendingSent.length > 0 && (
-              <div className="bg-slate-800/60 border border-slate-700/40 text-slate-300 px-3.5 py-1.5 rounded-xl flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-amber-400" />
-                <span>{pendingSent.length} Outgoing Pending</span>
-              </div>
+              <span className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-amber-500" />
+                <span>{pendingSent.length} Pending</span>
+              </span>
             )}
           </div>
         </div>

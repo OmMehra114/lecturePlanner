@@ -24,7 +24,7 @@ export default function PlanDetailPage({ params }) {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Top Breadcrumb & Back Navigation */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200 print:hidden">
           <div className="flex items-center gap-3">
             <Link
               href="/library"
