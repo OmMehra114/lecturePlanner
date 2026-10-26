@@ -1,73 +1,179 @@
-// Prisma Schema for Lecture Planner
+// Prisma Schema for Lecture Planner & Collaboration Platform
+// Configured for PostgreSQL (Neon DB)
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
 }
+
+
+// -----------------------------------------------------------------------------
+// USER MANAGEMENT (Synced with Clerk Authentication)
+// -----------------------------------------------------------------------------
 
 model User {
-  id        String     @id @default(cuid())
-  email     String     @unique
-  name      String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  courses   Course[]
-  schedules Schedule[]
-}
-
-model Course {
-  id          String     @id @default(cuid())
-  userId      String?
-  user        User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  subjectName String
-  subjectCode String?
+  id          String   @id @default(cuid())
+  clerkId     String   @unique // Clerk User ID (e.g., user_2xxx)
+  email       String   @unique
+  name        String?
+  imageUrl    String?
   department  String?
-  credits     Int        @default(3)
-  totalHours  Int        @default(40)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  schedules   Schedule[]
+  institution String?
+  role        String   @default("INSTRUCTOR") // INSTRUCTOR, HOD, STUDENT, ADMIN
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  plans               LecturePlan[]
+  sentConnections     Connection[]    @relation("SentConnections")
+  receivedConnections Connection[]    @relation("ReceivedConnections")
+  sentShares          PlanShare[]     @relation("SentShares")
+  receivedShares      PlanShare[]     @relation("ReceivedShares")
+
+  @@index([clerkId])
+  @@index([email])
 }
 
-model Schedule {
-  id             String        @id @default(cuid())
-  userId         String?
-  user           User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  courseId       String?
-  course         Course?       @relation(fields: [courseId], references: [id], onDelete: SetNull)
+// -----------------------------------------------------------------------------
+// LECTURE PLANS & SYLLABUS LIBRARY
+// -----------------------------------------------------------------------------
+
+enum PlanStatus {
+  DRAFT
+  SAVED
+  ACTIVE
+  ARCHIVED
+}
+
+model LecturePlan {
+  id             String      @id @default(cuid())
+  userId         String
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Course Metadata
   subjectName    String
   subjectCode    String?
-  credits        Int           @default(3)
-  totalHours     Int           @default(40)
-  startDate      String
-  endDate        String?
-  teachingDays   String        // JSON array of active days [1,2,3,4,5]
-  includeFridays Boolean       @default(true)
-  customHolidays String?       // JSON array of custom holiday objects
-  syllabusRaw    String?
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  lectures       LectureItem[]
+  department     String?
+  credits        Int         @default(3)
+  totalHours     Int         @default(40)
+  startDate      String      // YYYY-MM-DD
+  endDate        String?     // YYYY-MM-DD
+  teachingDays   Json        // Array of day numbers, e.g. [1, 2, 3, 4, 5]
+  includeFridays Boolean     @default(true)
+  fridayOption   String      @default("full") // full | half | exclude
+  customHolidays Json?       // Array of custom holiday objects
+  syllabusRaw    String?     @db.Text
+  
+  // Computed Engine Stats (total lectures, overflow count, estimated finish, etc.)
+  stats          Json?
+  
+  // Library Management
+  status         PlanStatus  @default(SAVED)
+  isFavorite     Boolean     @default(false)
+  isPublic       Boolean     @default(false)
+  version        Int         @default(1)
+  
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  // Relationships
+  topics         LectureTopic[]
+  shares         PlanShare[]
+
+  @@index([userId])
+  @@index([subjectCode])
+  @@index([status])
 }
 
-model LectureItem {
-  id          String   @id @default(cuid())
-  scheduleId  String
-  schedule    Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+model LectureTopic {
+  id          String      @id @default(cuid())
+  planId      String
+  plan        LecturePlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  
   srNo        Int
   unit        String?
   topic       String
-  subTopics   String?  // JSON array
-  lectures    Int      @default(1)
-  targetDates String?  // JSON array of formatted strings
+  subTopics   Json?       // Array of subtopic strings: ["Subtopic 1", "Subtopic 2"]
+  lectures    Int         @default(1)
+  targetDates Json?       // Array of mapped ISO date strings
   dateRange   String?
-  isOverflow  Boolean  @default(false)
-  completed   Boolean  @default(false)
-  notes       String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  isOverflow  Boolean     @default(false)
+  completed   Boolean     @default(false)
+  notes       String?     @db.Text
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([planId])
+  @@index([srNo])
+}
+
+// -----------------------------------------------------------------------------
+// PEER CONNECTIONS (User-to-User Networking)
+// -----------------------------------------------------------------------------
+
+enum ConnectionStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  BLOCKED
+}
+
+model Connection {
+  id         String           @id @default(cuid())
+  senderId   String
+  sender     User             @relation("SentConnections", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId String
+  receiver   User             @relation("ReceivedConnections", fields: [receiverId], references: [id], onDelete: Cascade)
+  
+  status     ConnectionStatus @default(PENDING)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@unique([senderId, receiverId])
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([status])
+}
+
+// -----------------------------------------------------------------------------
+// LECTURE PLAN SHARING (Collaborative Send / Receive)
+// -----------------------------------------------------------------------------
+
+enum SharePermission {
+  VIEW
+  CLONE
+  EDIT
+}
+
+enum ShareStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
+model PlanShare {
+  id         String          @id @default(cuid())
+  planId     String
+  plan       LecturePlan     @relation(fields: [planId], references: [id], onDelete: Cascade)
+  
+  senderId   String
+  sender     User            @relation("SentShares", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId String
+  receiver   User            @relation("ReceivedShares", fields: [receiverId], references: [id], onDelete: Cascade)
+  
+  message    String?         @db.Text // Optional note attached to the lecture plan
+  permission SharePermission @default(VIEW)
+  status     ShareStatus     @default(PENDING)
+  
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  @@index([planId])
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([status])
 }

@@ -12,10 +12,12 @@ import {
   Clock, 
   Check, 
   X,
-  FileCode2
+  FileCode2,
+  AlertCircle
 } from 'lucide-react';
 import { SAMPLE_SYLLABI } from './SamplePresets';
 import HolidayModal from './HolidayModal';
+import { CourseFormSchema } from '../lib/schema';
 
 const DAYS_OF_WEEK = [
   { id: 1, label: 'Mon', full: 'Monday' },
@@ -40,6 +42,7 @@ export default function CourseForm({ onSubmit, isLoading }) {
     syllabusText: '',
   });
 
+  const [fieldErrors, setFieldErrors] = useState({});
   const [customHolidays, setCustomHolidays] = useState([]);
   const [includeDefaultHolidays, setIncludeDefaultHolidays] = useState(true);
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
@@ -52,6 +55,9 @@ export default function CourseForm({ onSubmit, isLoading }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
   };
 
   const toggleTeachingDay = (dayId) => {
@@ -62,6 +68,9 @@ export default function CourseForm({ onSubmit, isLoading }) {
         : [...prev.teachingDays, dayId].sort();
       return { ...prev, teachingDays: updated };
     });
+    if (fieldErrors.teachingDays) {
+      setFieldErrors((prev) => ({ ...prev, teachingDays: undefined }));
+    }
   };
 
   const handleFileDrop = (e) => {
@@ -69,12 +78,18 @@ export default function CourseForm({ onSubmit, isLoading }) {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       setFile(e.dataTransfer.files[0]);
+      if (fieldErrors.syllabusText) {
+        setFieldErrors((prev) => ({ ...prev, syllabusText: undefined }));
+      }
     }
   };
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+      if (fieldErrors.syllabusText) {
+        setFieldErrors((prev) => ({ ...prev, syllabusText: undefined }));
+      }
     }
   };
 
@@ -90,10 +105,38 @@ export default function CourseForm({ onSubmit, isLoading }) {
       syllabusText: preset.syllabusText,
     }));
     setFile(null);
+    setFieldErrors({});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFieldErrors({});
+
+    // Zod validation with CourseFormSchema
+    const result = CourseFormSchema.safeParse({
+      ...formData,
+      customHolidays,
+    });
+
+    const newErrors = {};
+
+    if (!result.success) {
+      const flattened = result.error.flatten().fieldErrors;
+      Object.keys(flattened).forEach((key) => {
+        newErrors[key] = flattened[key][0];
+      });
+    }
+
+    // Custom check: either syllabus file or syllabus text must be provided
+    if (!file && !formData.syllabusText.trim()) {
+      newErrors.syllabusText = 'Please provide syllabus text or upload a syllabus document';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setFieldErrors(newErrors);
+      return;
+    }
+
     onSubmit({
       ...formData,
       file,
@@ -160,9 +203,18 @@ export default function CourseForm({ onSubmit, isLoading }) {
                     value={formData.subjectName}
                     onChange={handleChange}
                     placeholder="e.g. Software Engineering & Architecture"
-                    className="w-full text-sm px-3.5 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white text-slate-900 transition"
-                    required
+                    className={`w-full text-sm px-3.5 py-2.5 bg-slate-50/50 border rounded-xl focus:ring-2 focus:bg-white text-slate-900 transition ${
+                      fieldErrors.subjectName
+                        ? 'border-red-400 focus:ring-red-500/20 focus:border-red-500'
+                        : 'border-slate-200 focus:ring-indigo-500/20 focus:border-indigo-600'
+                    }`}
                   />
+                  {fieldErrors.subjectName && (
+                    <p className="text-xs text-red-600 mt-1 flex items-center gap-1 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      <span>{fieldErrors.subjectName}</span>
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -258,9 +310,16 @@ export default function CourseForm({ onSubmit, isLoading }) {
                     name="startDate"
                     value={formData.startDate}
                     onChange={handleChange}
-                    className="w-full text-sm px-3.5 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-slate-900 transition"
-                    required
+                    className={`w-full text-sm px-3.5 py-2.5 bg-slate-50/50 border rounded-xl focus:ring-2 focus:border-indigo-600 text-slate-900 transition ${
+                      fieldErrors.startDate ? 'border-red-400 focus:ring-red-500/20' : 'border-slate-200 focus:ring-indigo-500/20'
+                    }`}
                   />
+                  {fieldErrors.startDate && (
+                    <p className="text-xs text-red-600 mt-1 flex items-center gap-1 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      <span>{fieldErrors.startDate}</span>
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -302,6 +361,12 @@ export default function CourseForm({ onSubmit, isLoading }) {
                     );
                   })}
                 </div>
+                {fieldErrors.teachingDays && (
+                  <p className="text-xs text-red-600 mt-2 flex items-center gap-1 font-medium">
+                    <AlertCircle className="w-3.5 h-3.5" />
+                    <span>{fieldErrors.teachingDays}</span>
+                  </p>
+                )}
               </div>
 
               {/* Friday Option */}
@@ -406,26 +471,36 @@ export default function CourseForm({ onSubmit, isLoading }) {
                     </button>
                   )}
                 </div>
-                <textarea
-                  name="syllabusText"
-                  rows={6}
-                  value={formData.syllabusText}
-                  onChange={handleChange}
-                  placeholder="Paste chapter outlines, module topics, or curriculum breakdown..."
-                  className="w-full flex-1 text-xs px-3.5 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white text-slate-900 transition font-mono"
-                />
+                  <textarea
+                    name="syllabusText"
+                    rows={6}
+                    value={formData.syllabusText}
+                    onChange={handleChange}
+                    placeholder="Paste chapter outlines, module topics, or curriculum breakdown..."
+                    className={`w-full flex-1 text-xs px-3.5 py-2.5 bg-slate-50/50 border rounded-xl focus:ring-2 focus:bg-white text-slate-900 transition font-mono ${
+                      fieldErrors.syllabusText
+                        ? 'border-red-400 focus:ring-red-500/20'
+                        : 'border-slate-200 focus:ring-indigo-500/20 focus:border-indigo-600'
+                    }`}
+                  />
+                  {fieldErrors.syllabusText && (
+                    <p className="text-xs text-red-600 mt-1 flex items-center gap-1 font-medium">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      <span>{fieldErrors.syllabusText}</span>
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Generate Button Bar */}
-        <div className="flex justify-end pt-2">
-          <button
-            type="submit"
-            disabled={isLoading || (!formData.syllabusText.trim() && !file)}
-            className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 via-indigo-700 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold rounded-2xl shadow-xl shadow-indigo-600/20 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 flex items-center justify-center gap-3 text-sm"
-          >
+          {/* Generate Button Bar */}
+          <div className="flex justify-end pt-2">
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 via-indigo-700 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold rounded-2xl shadow-xl shadow-indigo-600/20 disabled:opacity-50 disabled:cursor-not-allowed transition duration-200 flex items-center justify-center gap-3 text-sm cursor-pointer"
+            >
             {isLoading ? (
               <>
                 <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" fill="none">

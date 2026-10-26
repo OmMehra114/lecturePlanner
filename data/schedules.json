@@ -2,6 +2,464 @@
   {
     "success": true,
     "meta": {
+      "subjectName": "Software Engineering",
+      "subjectCode": "CS-301",
+      "department": "",
+      "credits": 3,
+      "totalHours": 24,
+      "startDate": "2026-08-03",
+      "endDate": "2026-11-20",
+      "teachingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "includeFridays": true,
+      "customHolidays": [],
+      "includeDefaultHolidays": true
+    },
+    "topics": [
+      {
+        "srNo": 1,
+        "topic": "Software Engineering principles, software characteristics and evolution",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "03 Aug 2026 (Mon)",
+          "04 Aug 2026 (Tue)"
+        ],
+        "dateRange": "03 Aug 2026 (Mon) to 04 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 2,
+        "topic": "SDLC models: Waterfall, Incremental, RAD, Prototyping, Spiral",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "05 Aug 2026 (Wed)",
+          "06 Aug 2026 (Thu)"
+        ],
+        "dateRange": "05 Aug 2026 (Wed) to 06 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 3,
+        "topic": "Agile Methodologies: Scrum, Kanban, Extreme Programming (XP), Sprint Planning",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "07 Aug 2026 (Fri)"
+        ],
+        "dateRange": "07 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 4,
+        "topic": "Functional vs Non-Functional Requirements, User and System Requirements",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "10 Aug 2026 (Mon)",
+          "11 Aug 2026 (Tue)"
+        ],
+        "dateRange": "10 Aug 2026 (Mon) to 11 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 5,
+        "topic": "Requirement engineering processes: Elicitation, Analysis, Specification, Validation",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "12 Aug 2026 (Wed)",
+          "13 Aug 2026 (Thu)"
+        ],
+        "dateRange": "12 Aug 2026 (Wed) to 13 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 6,
+        "topic": "SRS documentation standards (IEEE 830), Use Case modeling and Activity diagrams",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "14 Aug 2026 (Fri)"
+        ],
+        "dateRange": "14 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 7,
+        "topic": "Architectural styles and patterns (Layered, Client-Server, Microservices, Event-Driven)",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "17 Aug 2026 (Mon)",
+          "18 Aug 2026 (Tue)"
+        ],
+        "dateRange": "17 Aug 2026 (Mon) to 18 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 8,
+        "topic": "Object-Oriented Design concepts, Class diagrams, Sequence and State diagrams",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "19 Aug 2026 (Wed)",
+          "20 Aug 2026 (Thu)"
+        ],
+        "dateRange": "19 Aug 2026 (Wed) to 20 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 9,
+        "topic": "Design Principles: SOLID, High cohesion, Loose coupling, Refactoring",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "21 Aug 2026 (Fri)"
+        ],
+        "dateRange": "21 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 10,
+        "topic": "Testing fundamentals, Verification vs Validation, Test levels (Unit, Integration, System, Acceptance)",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "24 Aug 2026 (Mon)",
+          "25 Aug 2026 (Tue)"
+        ],
+        "dateRange": "24 Aug 2026 (Mon) to 25 Aug 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 11,
+        "topic": "Black-box testing (Equivalence Partitioning, Boundary Value Analysis) and White-box testing (Control Flow, Cyclomatic Complexity)",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "26 Aug 2026 (Wed)",
+          "27 Aug 2026 (Thu)"
+        ],
+        "dateRange": "26 Aug 2026 (Wed) to 27 Aug 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 12,
+        "topic": "QA processes, ISO 9000, CMMI levels, Automated testing and CI/CD pipelines",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "28 Aug 2026 (Fri)"
+        ],
+        "dateRange": "28 Aug 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 13,
+        "topic": "Project estimation techniques: COCOMO model, Function Point Analysis",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "31 Aug 2026 (Mon)",
+          "01 Sep 2026 (Tue)"
+        ],
+        "dateRange": "31 Aug 2026 (Mon) to 01 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 14,
+        "topic": "Risk management, Configuration management (Git, branching strategies)",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "02 Sep 2026 (Wed)"
+        ],
+        "dateRange": "02 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 15,
+        "topic": "Software maintenance types, legacy system evolution, DevOps overview",
+        "lectures": 1,
+        "subTopics": [],
+        "targetDates": [
+          "03 Sep 2026 (Thu)"
+        ],
+        "dateRange": "03 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      }
+    ],
+    "stats": {
+      "totalLectures": 24,
+      "totalDays": 24,
+      "semesterExceeded": false,
+      "overflowLecturesCount": 0,
+      "completionEstimatedDate": "03 Sep 2026 (Thu)"
+    },
+    "id": "plan_1792999445523_c0ov2o",
+    "updatedAt": "2026-10-26T07:24:05.523Z",
+    "createdAt": "2026-10-26T07:24:05.523Z"
+  },
+  {
+    "success": true,
+    "meta": {
+      "subjectName": "Machine Learning & AI",
+      "subjectCode": "AI-402",
+      "department": "",
+      "credits": 3,
+      "totalHours": 36,
+      "startDate": "2026-09-01",
+      "endDate": "2026-12-18",
+      "teachingDays": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "includeFridays": true,
+      "customHolidays": [],
+      "includeDefaultHolidays": true
+    },
+    "topics": [
+      {
+        "srNo": 1,
+        "topic": "Foundations of Artificial Intelligence, Intelligent Agents and Environments",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "01 Sep 2026 (Tue)",
+          "02 Sep 2026 (Wed)"
+        ],
+        "dateRange": "01 Sep 2026 (Tue) to 02 Sep 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 2,
+        "topic": "Uninformed Search: Breadth‑First, Depth‑First, Uniform Cost Search",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "03 Sep 2026 (Thu)",
+          "07 Sep 2026 (Mon)"
+        ],
+        "dateRange": "03 Sep 2026 (Thu) to 07 Sep 2026 (Mon)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 3,
+        "topic": "Informed Search: Heuristic Search, A* Algorithm, Hill Climbing, Minimax & Alpha‑Beta Pruning",
+        "lectures": 3,
+        "subTopics": [],
+        "targetDates": [
+          "08 Sep 2026 (Tue)",
+          "09 Sep 2026 (Wed)",
+          "10 Sep 2026 (Thu)"
+        ],
+        "dateRange": "08 Sep 2026 (Tue) to 10 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 4,
+        "topic": "Linear Regression, Logistic Regression, Loss Functions and Gradient Descent",
+        "lectures": 3,
+        "subTopics": [],
+        "targetDates": [
+          "11 Sep 2026 (Fri)",
+          "14 Sep 2026 (Mon)",
+          "15 Sep 2026 (Tue)"
+        ],
+        "dateRange": "11 Sep 2026 (Fri) to 15 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 5,
+        "topic": "Decision Trees, Information Gain, Gini Impurity and Pruning",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "16 Sep 2026 (Wed)",
+          "17 Sep 2026 (Thu)"
+        ],
+        "dateRange": "16 Sep 2026 (Wed) to 17 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 6,
+        "topic": "Support Vector Machines, Kernel Trick and k‑Nearest Neighbors",
+        "lectures": 3,
+        "subTopics": [],
+        "targetDates": [
+          "18 Sep 2026 (Fri)",
+          "21 Sep 2026 (Mon)",
+          "22 Sep 2026 (Tue)"
+        ],
+        "dateRange": "18 Sep 2026 (Fri) to 22 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 7,
+        "topic": "Clustering: K‑Means, Hierarchical Clustering and DBSCAN",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "23 Sep 2026 (Wed)",
+          "24 Sep 2026 (Thu)"
+        ],
+        "dateRange": "23 Sep 2026 (Wed) to 24 Sep 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 8,
+        "topic": "Principal Component Analysis, Feature Selection and Normalization",
+        "lectures": 3,
+        "subTopics": [],
+        "targetDates": [
+          "25 Sep 2026 (Fri)",
+          "28 Sep 2026 (Mon)",
+          "29 Sep 2026 (Tue)"
+        ],
+        "dateRange": "25 Sep 2026 (Fri) to 29 Sep 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 9,
+        "topic": "Anomaly Detection and Evaluation Metrics (Silhouette Score)",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "30 Sep 2026 (Wed)",
+          "01 Oct 2026 (Thu)"
+        ],
+        "dateRange": "30 Sep 2026 (Wed) to 01 Oct 2026 (Thu)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 10,
+        "topic": "Perceptrons, Multi‑Layer Perceptrons, Activation Functions and Backpropagation",
+        "lectures": 3,
+        "subTopics": [],
+        "targetDates": [
+          "05 Oct 2026 (Mon)",
+          "06 Oct 2026 (Tue)",
+          "07 Oct 2026 (Wed)"
+        ],
+        "dateRange": "05 Oct 2026 (Mon) to 07 Oct 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 11,
+        "topic": "Convolutional Neural Networks for Image Processing",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "08 Oct 2026 (Thu)",
+          "09 Oct 2026 (Fri)"
+        ],
+        "dateRange": "08 Oct 2026 (Thu) to 09 Oct 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 12,
+        "topic": "Recurrent Neural Networks and LSTM Fundamentals",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "12 Oct 2026 (Mon)",
+          "13 Oct 2026 (Tue)"
+        ],
+        "dateRange": "12 Oct 2026 (Mon) to 13 Oct 2026 (Tue)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 13,
+        "topic": "Overfitting vs Underfitting, Cross‑Validation, Precision, Recall, F1‑Score and ROC‑AUC",
+        "lectures": 3,
+        "subTopics": [],
+        "targetDates": [
+          "14 Oct 2026 (Wed)",
+          "15 Oct 2026 (Thu)",
+          "16 Oct 2026 (Fri)"
+        ],
+        "dateRange": "14 Oct 2026 (Wed) to 16 Oct 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 14,
+        "topic": "Ensemble Methods: Random Forest, Gradient Boosting and XGBoost",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "19 Oct 2026 (Mon)",
+          "21 Oct 2026 (Wed)"
+        ],
+        "dateRange": "19 Oct 2026 (Mon) to 21 Oct 2026 (Wed)",
+        "isOverflow": false,
+        "completed": false
+      },
+      {
+        "srNo": 15,
+        "topic": "Ethics in AI, Bias, Fairness and Introduction to Large Language Models",
+        "lectures": 2,
+        "subTopics": [],
+        "targetDates": [
+          "22 Oct 2026 (Thu)",
+          "23 Oct 2026 (Fri)"
+        ],
+        "dateRange": "22 Oct 2026 (Thu) to 23 Oct 2026 (Fri)",
+        "isOverflow": false,
+        "completed": false
+      }
+    ],
+    "stats": {
+      "totalLectures": 36,
+      "totalDays": 36,
+      "semesterExceeded": false,
+      "overflowLecturesCount": 0,
+      "completionEstimatedDate": "23 Oct 2026 (Fri)"
+    },
+    "id": "plan_1792999301853_xpax9k",
+    "updatedAt": "2026-10-26T07:23:28.143Z",
+    "createdAt": "2026-10-26T07:21:41.853Z"
+  },
+  {
+    "success": true,
+    "meta": {
       "subjectName": "Information Security",
       "subjectCode": "CO001",
       "department": "",
